@@ -1,0 +1,19 @@
+{
+  "required_api_version": "^2.0.0",
+  "name": "cheat.sh",
+  "description": "Show cheat.sh answers from Ulauncher",
+  "developer_name": "aradar.top",
+  "icon": "images/icon.svg",
+  "options": {
+    "query_debounce": 0.35
+  },
+  "preferences": [
+    {
+      "id": "cht_kw",
+      "type": "keyword",
+      "name": "cheat.sh",
+      "description": "Search cheat.sh",
+      "default_value": "cht"
+    }
+  ]
+}

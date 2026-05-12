@@ -1,47 +1,136 @@
-# Ulauncher cheat.sh Extension
+# cheat.sh for Ulauncher
 
-Type `cht <query>` in Ulauncher to show cheat.sh results.
+Search [cheat.sh](https://cht.sh/) from Ulauncher and copy practical command examples without leaving the launcher.
+
+Type `cht <query>`, pick the task you want, and press Enter to copy the command.
+
+![cheat.sh Ulauncher extension screenshot](image.png)
+
+## Features
+
+- Search cheat.sh with the default `cht` keyword.
+- Shows command-focused results instead of raw cheat.sh output.
+- Press Enter on a result to copy that specific command.
+- Includes lower-priority actions to copy the full cheat.sh answer or open it in your browser.
+- Uses only Python standard-library modules plus Ulauncher's extension API.
 
 ## Examples
 
-- `cht tar`
-- `cht python list comprehension`
-- `cht python/random list elements`
-- `cht ~snapshot`
+```text
+cht tar
+cht docker
+cht python list comprehension
+cht python/random list elements
+cht ~snapshot
+```
 
-Selecting a preview result copies the full cheat.sh response to the clipboard. The final result opens the full answer in your browser.
+Example result for `cht tar`:
 
-## Install For Local Development
+```text
+extract an uncompressed archive
+tar -xvf /path/to/foo.tar
 
-Ulauncher loads extensions from:
+create a .tgz or .tar.gz archive
+tar -czvf /path/to/foo.tgz /path/to/foo/
+```
+
+## Installation
+
+### From Ulauncher Extensions
+
+After this extension is published, install it from:
+
+```text
+https://ext.ulauncher.io/
+```
+
+### From GitHub URL
+
+Open Ulauncher Preferences, go to Extensions, choose **Add extension**, and paste this repository URL:
+
+```text
+https://github.com/<user>/ulauncher-cheatsh
+```
+
+Replace `<user>` with the GitHub owner after publishing the repository.
+
+### Local Development Install
+
+Ulauncher loads local extensions from:
 
 ```bash
 ~/.local/share/ulauncher/extensions/
 ```
 
-Clone or symlink this directory there:
+Symlink this project while developing:
 
 ```bash
 mkdir -p ~/.local/share/ulauncher/extensions
 ln -s "$PWD" ~/.local/share/ulauncher/extensions/ulauncher-cheatsh
 ```
 
-Restart Ulauncher, then type `cht tar`.
+Restart Ulauncher, then try:
 
-For debugging:
-
-```bash
-ulauncher -v
+```text
+cht tar
 ```
 
-## Tests
+## Development
 
-The test suite covers helper functions that do not require Ulauncher:
+Run the helper tests:
 
 ```bash
 python -m unittest discover -s tests
 ```
 
-## Notes
+Run Ulauncher with verbose logging:
 
-This extension uses direct HTTPS requests to `https://cht.sh` and does not require the `cht.sh` command-line client.
+```bash
+ulauncher -v
+```
+
+For the extension development workflow recommended by Ulauncher:
+
+```bash
+ulauncher --no-extensions --dev -v
+```
+
+## How It Works
+
+The extension calls cheat.sh directly over HTTPS:
+
+```text
+https://cht.sh/<query>?T
+```
+
+Spaces are encoded as `+`, and slash-separated cheat.sh namespaces are preserved. For example:
+
+```text
+cht python/random list elements
+```
+
+queries:
+
+```text
+https://cht.sh/python/random+list+elements?T
+```
+
+The `?T` flag asks cheat.sh for plain text output. The extension also strips terminal escape sequences defensively.
+
+## Publishing Notes
+
+The repository root must contain:
+
+- `main.py`
+- `manifest.json`
+- `versions.json`
+- `images/icon.svg`
+- `README.md`
+
+`versions.json` should point to the branch or tag that Ulauncher should install. If the default branch is `main`, update it accordingly.
+
+## Limitations
+
+- Requires network access to `https://cht.sh`.
+- No offline cache is currently implemented.
+- cheat.sh content is provided by the upstream cheat.sh service; this extension only formats and exposes it in Ulauncher.
