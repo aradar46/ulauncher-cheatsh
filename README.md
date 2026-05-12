@@ -41,7 +41,7 @@ tar -czvf /path/to/foo.tgz /path/to/foo/
 After this extension is published, install it from:
 
 ```text
-https://ext.ulauncher.io/
+https://ext.ulauncher.io/-/github-aradar46-ulauncher-cheatsh
 ```
 
 ### From GitHub URL
