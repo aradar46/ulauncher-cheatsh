@@ -49,10 +49,10 @@ https://ext.ulauncher.io/
 Open Ulauncher Preferences, go to Extensions, choose **Add extension**, and paste this repository URL:
 
 ```text
-https://github.com/<user>/ulauncher-cheatsh
+https://github.com/aradar46/ulauncher-cheatsh
 ```
 
-Replace `<user>` with the GitHub owner after publishing the repository.
+This is the same URL you can paste into Ulauncher's **Add extension** dialog.
 
 ### Local Development Install
 
@@ -127,7 +127,7 @@ The repository root must contain:
 - `images/icon.svg`
 - `README.md`
 
-`versions.json` should point to the branch or tag that Ulauncher should install. If the default branch is `main`, update it accordingly.
+`versions.json` points to `main`, so the `main` branch must contain the extension files listed above.
 
 ## Limitations
 
