@@ -127,9 +127,7 @@ The repository root must contain:
 - `images/icon.svg`
 - `README.md`
 
-`versions.json` points to a tested commit hash. For future releases, update that value to the new release commit or tag after verifying the extension.
-
-The repository also keeps a `master` branch for compatibility with older Ulauncher extension flows and cached metadata. Keep `main` and `master` aligned unless release handling is changed intentionally.
+`versions.json` points to `master`, which is kept as the publishing branch for Ulauncher compatibility.
 
 ## Limitations
 

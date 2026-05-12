@@ -42,9 +42,8 @@ The integration layer performs a bounded HTTPS request to cheat.sh using Python 
 - Send a curl-compatible `User-Agent` header because cheat.sh's HTTP interface is primarily optimized for curl-style clients and can return server errors for generic custom agents.
 - Keep all files at the extension root, matching Ulauncher tutorial conventions.
 - Use `required_api_version` range `^2.0.0` in extension metadata to match common Ulauncher extension manifests and avoid compatibility parsing differences across Ulauncher releases.
-- Point `versions.json` at a tested GitHub commit hash. Ulauncher reads `versions.json` first, then downloads the extension from the `commit` branch/tag/hash it declares; using an immutable commit avoids branch cache ambiguity during installation.
-- Maintain a `master` branch aligned with `main` for compatibility with older Ulauncher extension flows and stale cached metadata that may still reference `master`.
+- Point `versions.json` at the `master` branch. Ulauncher reads `versions.json` first, then downloads the extension from the `commit` branch/tag/hash it declares. `master` is used as the publishing branch for compatibility with older Ulauncher extension flows.
 
 ## Migration Considerations
 
-Future migrations should preserve the default keyword `cht` unless intentionally documented as a breaking change. For each release, update `versions.json` to point at the new tested commit hash or a release tag, keep compatibility branches aligned, and document any release policy change here.
+Future migrations should preserve the default keyword `cht` unless intentionally documented as a breaking change. If release handling moves from `master` to tags or another branch, update `versions.json` and document the release policy change here.

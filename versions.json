@@ -1,6 +1,6 @@
 [
   {
     "required_api_version": "^2.0.0",
-    "commit": "1b69b02cc84989d1606dc7a3fc10ae755eb07eea"
+    "commit": "master"
   }
 ]
