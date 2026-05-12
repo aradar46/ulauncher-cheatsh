@@ -127,7 +127,7 @@ The repository root must contain:
 - `images/icon.svg`
 - `README.md`
 
-`versions.json` points to `main`, so the `main` branch must contain the extension files listed above.
+`versions.json` points to a tested commit hash. For future releases, update that value to the new release commit or tag after verifying the extension.
 
 ## Limitations
 
